@@ -1,0 +1,24 @@
+<section class="container">
+    <div class="signup">
+        <form class="signup-form" [formGroup]="signupForm">
+            <p class="error" *ngIf="errorSignup">Identifiant / Mot de passe incorrect</p>
+            <div class="input-group">
+                <label for="text">Pseudo</label>
+                <input type="text" id="text" autocomplete="username" formControlName="username">
+            </div>
+            <div class="input-group">
+                <label for="email">Adresse Mail</label>
+                <input type="email" id="email" autocomplete="email" formControlName="email">
+            </div>
+            <div class="input-group">
+                <label for="password">Mot de passe</label>
+                <div class="passwordContainer">
+                    <input (focus)="onPreventPassword()" (blur)="messagePassword = false" [type]="btnPassword ? 'text' : 'password'" id="password" autocomplete="current-password" class="password" formControlName="password">
+                    <i [class]="btnPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'" id="btnPassword" (click)="onSeePassword()"></i>  
+                </div>
+                <p class="preventPassword" *ngIf="messagePassword">Veuillez inclure au minimum 8 caractères (dont un chiffre, une lettre et un caractère spécial)</p>
+            </div>
+            <button class="submit" type="submit" (click)="onSignUp()" [disabled]="signupForm.invalid">S'inscrire</button>
+        </form>
+    </div>
+</section>

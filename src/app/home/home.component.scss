@@ -1,0 +1,77 @@
+$primary: #1D3557;
+$secondary: #E63946;
+$tertiary: #A8DADC;
+$bk: #F1FAEE;
+
+.container {
+    height: 93vh;
+    width: 100vw;
+    position: relative;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    
+}
+
+.content::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    background-image: url(../../assets/hello.svg);
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    & h1 {
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: clamp(2rem, 4rem, 5rem)
+    }
+
+    & .name {
+        font-weight: bolder;
+        color: $tertiary;
+    }
+    & h3 {
+        font-size: 1.5rem;
+    }
+    & .highlight {
+        background-color: $tertiary;
+        padding: 5px;
+    }
+}
+
+.addTask, .addTaks:focus {
+    font-weight: bold;
+    all: unset;
+    outline: revert;
+    padding: 15px;
+    background-color: $secondary;
+    color: white;
+    margin-top: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    &.addTask:hover {
+        background-color: $primary;
+    }
+}

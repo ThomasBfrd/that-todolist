@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="card-task card-hover"
+    [ngClass]="{ completed: checkbox.completed === true,
+    'completed-text': checkbox.completed === true,
+    deleted: buttonDelete === true}">
+        <div class="link">
+            <a class="url" href={{task.url}} target="_blank" *ngIf="task.url"><i class="fa-solid fa-link"></i></a>
+        </div>
+        <div class="text-content" (click)="onSingleTask()">
+            <h3 class="titre"><i class="fa-solid fa-arrow-right arrow"></i>{{ task.title }}</h3>
+            <h3 class="date"><i class="fa-regular fa-calendar calendar"></i>{{ task.date | date: 'dd/MM/yy'}}</h3>
+            <h3 class="description"><i class="fa-regular fa-message"></i>{{ task.description }}</h3>
+            <!-- <div class="url"><a href={{task.url}} target="_blank" *ngIf="task.url">🌐</a></div> -->
+
+        </div>
+        <div class="buttons">
+            <mat-checkbox [color]="checkbox.color" [(ngModel)]="checkbox.completed" (change)="onCheckboxChange()"></mat-checkbox>
+            <i class="fa-solid fa-trash buttonDelete" (click)="onDeleteTask()" *ngIf="task.isDone"></i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="content">
+        <div class="title" *ngIf="tasks$ | async as tasks">
+            <h1>Bonjour <strong class="name"> {{ currentUsername }} </strong>👋</h1>
+            <h3>Vous avez un total de  <span class="highlight">{{tasks.length}} tâches</span></h3>
+            <h3><span class="highlight">{{completedTasks}} tâches</span> ont été effectuées</h3>
+        </div>
+        <div>
+            <button (click)="onListTasks()" class="addTask">Voir les tâches</button>
+        </div>
+    </div>
+</div>

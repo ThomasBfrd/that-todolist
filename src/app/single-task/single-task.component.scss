@@ -1,0 +1,275 @@
+$primary: #1D3557;
+$secondary: #E63946;
+$tertiary: #A8DADC;
+$bk: #F1FAEE;
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 93vh;
+    width: 100vw;
+    background-color: $bk;
+}
+
+.hidden {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
+    z-index: 1;
+    background-color: $primary;
+    animation: hiddenBK 0.5s ease-in-out;
+}
+
+.card-task {
+    background-color: $tertiary;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 800px;
+    height: 400px;
+    padding: 16px;
+    color: $primary;
+    transition: background-color 0.3s, transform 0.3s;
+    position: relative;
+
+    &.completed {
+        background-color: $secondary;
+        .card-task__header,
+        .card-task__date,
+        .card-task__description,
+        mat-checkbox {
+            color: white;
+        }
+    }
+    
+    .card-task__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-task__title h2 {
+        font-weight: bold;
+    }
+
+    .card-task__date {
+        color: $primary;
+    }
+
+    .card-task__body {
+        margin-top: 12px;
+        display: flex;
+        margin-top: 50px;
+        gap: 20px;
+        flex-direction: column;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .card-task__description {
+        text-align: center;
+        margin: 0 auto;
+
+        & h3 {
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+
+    .card-task__description h2 {
+        font-size: 1.3rem;
+    }
+
+    .card-task__description h3 {
+        font-weight: normal;
+        margin-top: 30px;
+    }
+
+    .card-task__url {
+        margin-top: 15px;
+        overflow: hidden;
+        text-align: center;
+        margin-top: 30px;
+
+        .card-task__url {
+            font-weight: normal;
+            margin-top: 30px;
+        }
+
+        a {
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: $primary;
+            cursor: pointer;
+            text-decoration: none;
+            border: solid 1px;
+            padding: 10px;
+        }
+    }
+
+    .card-task__button {
+        position: absolute;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+.buttons {
+    position: absolute;
+    top:-50px;
+    left: 5px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 5px;
+
+    .buttonsTask {
+      justify-self: start;
+    }
+
+    .editButton {
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    background-color: $primary;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    }
+
+    .deleteIsOk {
+        animation : moveButtons 0.15s ease-in-out forwards;
+    }
+
+    @keyframes moveButtons {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(10px);
+        }
+    }
+
+    .back {
+        position: absolute;
+        right: 10px;
+        flex-shrink: 1;
+    }
+
+    .backButton {
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    background-color: $primary;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    }
+}
+
+.mat-checkbox {
+    align-self: center;
+}
+
+
+.addTask, .addTaks:focus {
+    font-weight: bold;
+    padding: 15px;
+    background-color: $secondary;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+    &.addTask:hover {
+        background-color: $primary;
+    }
+}
+
+
+form {
+    animation: formAnim 0.5s ease-in-out forwards;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    z-index: 2;
+    background-color: $tertiary;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+
+    .close {
+        position: absolute;
+        top: 3%;
+        right: 3%;
+        cursor: pointer;
+    }
+  
+    .formGroup {
+      margin-bottom: 15px;
+  
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: $primary;
+      }
+
+      label:nth-child(1) {
+        margin-top: 15px;
+      }
+  
+      input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid $primary;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+    }
+  
+    button {
+      width: 100%;
+      background-color: $secondary;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+  
+      &:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  @keyframes formAnim {
+    from {
+        top: 150%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+  }
+
+@keyframes hiddenBK {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 0.8;
+    }
+  }

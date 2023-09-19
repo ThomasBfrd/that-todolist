@@ -1,0 +1,30 @@
+<div class="container">
+    <nav class="header">
+        <div class="header__title">
+            <a *ngIf="isLogged" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="header__link"><h1>To-Do-List</h1></a>
+            <a *ngIf="!isLogged" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="header__link"><h1>To-Do-List</h1></a>
+        </div>
+        <div class="header__links">
+            <a *ngIf="!isLogged" routerLink="login" class="header__link">Connexion</a>
+            <a routerLink="tasks" routerLinkActive="active" class="header__link">Liste des tâches</a>
+            <!-- <a routerLink="contact" class="header__link">Contact</a> -->
+            <a *ngIf="isLogged" (click)="onLogout()" class="header__link">Déconnexion</a>
+        </div>
+    </nav>
+
+
+    <div class="fa-solid fa-bars openMenu" (click)="onMenu()" *ngIf="!buttonMenu"></div>
+    <nav class="headerMobile" [ngClass]="{'headerMobile-opening': buttonMenu, 'headerMobile-closing': !buttonMenu}">
+            <div class="fa-solid fa-x closeMenu" (click)="closeMenu()"></div>
+            <div class="headerMobile__title">
+                <a *ngIf="isLogged" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="headerMobile__title"><h1>To-Do-List</h1></a>
+                <a *ngIf="!isLogged" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="headerMobile__title"><h1>To-Do-List</h1></a>
+            </div>
+            <div class="headerMobile__links">
+                <a routerLink="tasks" routerLinkActive="active" class="headerMobile__link" (click)="closeMenu()">Liste des tâches</a>
+                <!-- <a routerLink="contact" class="headerMobile__link" (click)="closeMenu()">Contact</a> -->
+                <a *ngIf="!isLogged" routerLink="login" class="headerMobile__link" (click)="closeMenu()">Connexion</a>
+                <a *ngIf="isLogged" (click)="onLogout()" class="headerMobile__link" (click)="closeMenu()">Déconnexion</a>
+            </div>
+        </nav>
+</div>

@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="hidden" *ngIf="buttonEditTask"></div>
+    <div class="card-task"
+        *ngIf="task"
+        [ngClass]="{ completed: checkbox.completed === true,
+        'completed-text': checkbox.completed === true }">
+
+            <div class="buttons">
+                <div class="buttonsTask">
+                    <button class="editButton" (click)="openEditTask()">Modifier</button>
+                    <button *ngIf="checkbox.completed" [ngClass]="{deleteIsOk: checkbox.completed === true}" class="editButton" (click)="onDeleteTask()">Supprimer</button>
+                </div>
+                <div class="back">
+                    <button (click)="onTasksList()" class="backButton">Retour</button>
+                </div>
+                
+            </div>
+            
+            <div class="card-task__header">
+                <div class="card-task__title">
+                    <h2>{{ task.title }}</h2>
+                </div>
+                <div class="card-task__date">
+                    <h2>{{ task.date | date:'dd/MM/YYYY' }}</h2>
+                </div>
+            </div>
+            <div class="card-task__body">
+                <div class="card-task__description">
+                    <h2 class="descriptionTitle">Description de la tâche</h2>
+                    <h3>{{ task.description }}</h3>
+                </div>
+                <div class="card-task__url" *ngIf="task.url">
+                    <a href={{task.url}} target="_blank" class="cover">Ref de la tâche</a>
+                </div>
+            </div>
+            
+            <div class="card-task__button" [ngStyle]="{'margin-top.px' : task.url ? '280' : '180'}">
+                <mat-checkbox [color]="checkbox.color" [(ngModel)]="checkbox.completed" (change)="onCheckboxChange()"><p>{{buttonText}}</p></mat-checkbox> 
+            </div>
+    </div>
+
+    <div class="popUpAdd" *ngIf="buttonEditTask">
+        <form [formGroup]="taskForm">
+            <div class="close" (click)="closeEditTask()">❌</div>
+            <div class="formGroup">
+                <label for="title">Titre</label>
+                <input type="text" id="title" formControlName="title">
+            </div>
+            <div class="formGroup">
+                <label for="description">Description</label>
+                <input type="text" id="description" formControlName="description">
+            </div>
+            <div class="formGroup">
+                <label for="url">Prévu pour</label>
+                <input type="date" id="date" formControlName="date">
+            </div>
+            <div class="formGroup">
+                <label for="url">Url (facultatif)</label>
+                <input type="text" id="url" formControlName="url">
+            </div>
+            <button type="submit" (click)="onEditTask()" [disabled]="taskForm.invalid">Envoyer</button> 
+        </form>
+    </div>
+</div>

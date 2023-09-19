@@ -1,0 +1,287 @@
+
+
+$primary: #1D3557;
+$secondary: #E63946;
+$tertiary: #A8DADC;
+$bk: #F1FAEE;
+
+.container {
+    width: 95vw;
+    height: 5vh;
+}
+
+.card-task {
+    position: relative;
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: solid 1px black;
+    background-color: $tertiary;
+    padding: 15px;
+    border-radius: 4px;
+
+    .link {
+        width: 5%;
+    }
+
+    .text-content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        z-index: 1;
+        color: $primary;
+
+        &.white-text {
+            color: white;
+        }
+    }
+
+    .titre {
+        font-weight: normal;
+        font-size: 1.1rem;
+        width: 35%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+
+    .arrow {
+        margin-right: 10px;
+    }
+
+    .date {
+        font-size: 1rem;
+        font-weight: normal;
+        width: 20%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+
+    .calendar {
+        margin-right: 10px;
+    }
+
+    .description {
+        width: 45%;
+        font-weight: 300;
+        font-size: 1rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+
+    .fa-message {
+        margin-right: 15px;
+    }
+
+
+    .url {
+        width: 5%;
+        z-index: 1;
+        padding: 5px;
+        border-radius: 8px;
+        background-color: $primary;
+
+        .fa-link {
+            font-size: 0.8rem;
+            color: white;
+            text-decoration: none;
+        }
+        &:hover, &:active {
+            z-index: 0;
+            background-color: $secondary;
+            color: white;
+        }
+    }
+
+    .buttons {
+        z-index: 1;
+        width: 5%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 10px;
+        .buttonDelete {
+            padding: 2px;
+            &:hover {
+            color: $primary;
+        }
+        }
+        
+    }
+}
+
+.card-hover {
+    cursor: pointer;
+    &:hover {
+        background-color: $bk;
+    }
+}
+
+.completed {
+    position: relative;
+    background-color: $tertiary;
+    color: white;
+    z-index: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: $secondary;
+        animation: bk-completed 0.25s ease-in-out forwards;
+        width: 0;
+        z-index: -1;
+    }
+
+    &.completed-text .text-content {
+        color: white;
+        text-decoration: line-through;
+    }
+}
+
+@keyframes bk-completed {
+    to { width: 100%; }
+}
+
+
+.deleted {
+            animation: removeTask 0.25s ease-in-out forwards;
+}
+
+@keyframes removeTask {
+    from {
+        transform: translateX(0);
+    } 
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+@media screen and (max-width: 1439px) {
+
+    .card-task {
+
+    .text-content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 95%;
+    }
+    .titre {
+        font-size: 0.8rem;
+        width: 70%;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+
+    .arrow {
+        margin-right: 10px;
+        font-size: 0.8rem;
+    }
+
+    .date {
+        font-size: 0.8rem;
+        width: 30%;
+    }
+
+    .calendar {
+        margin-right: 10px;
+        font-size: 0.8rem;
+    }
+
+    .description {
+        display: none;
+    }
+
+  .url {
+    display:none;
+}
+
+.buttons {
+    z-index: 1;
+    width: 5%;
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    .buttonDelete {
+        padding: 2px;
+        &:hover {
+        color: $primary;
+            }
+        }
+    
+    }
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .card-task {
+        width: 90%;
+
+    .text-content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 95%;
+    }
+    .titre {
+        font-size: 0.75rem;
+        width: 65%;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        overflow: hidden; 
+    }
+
+    .arrow {
+        margin-right: 10px;
+        font-size: 0.8rem;
+    }
+
+    .date {
+        font-size: 0.75rem;
+        width: 35%;
+    }
+
+    .calendar {
+        margin-right: 10px;
+        font-size: 0.8rem;
+    }
+  .description {
+    display: none;
+  }
+
+  .url {
+    display: none;
+    }
+
+.buttons {
+    z-index: 1;
+    width: 5%;
+    margin: 0 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    .buttonDelete {
+        padding: 2px;
+        &:hover {
+        color: $primary;
+            }
+        }
+    
+    }
+    }
+}

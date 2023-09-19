@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="hidden" *ngIf="buttonAddTask"></div>
+    <div class="listing">
+        <h1>Vos tâches 👀</h1>
+        <div class="task">
+            <app-task *ngFor="let task of tasks$ | async "[task]="task" (taskDeleted)="onTaskDeleted($event)" ></app-task> 
+        </div>
+        <button class="addTask" (click)="onNewTask()">Ajouter une tâche</button>
+    </div>
+
+    <div class="popUpAdd" *ngIf="buttonAddTask">
+        <form [formGroup]="taskForm">
+            <div class="close" (click)="closeNewTask()">❌</div>
+            <div class="formGroup">
+                <label for="title">Titre</label>
+                <input type="text" id="title" formControlName="title">
+            </div>
+            <div class="formGroup">
+                <label for="description">Description</label>
+                <textarea id="description" formControlName="description"></textarea>
+            </div>
+            <div class="formGroup">
+                <label for="url">Prévu pour</label>
+                <input type="date" id="date" formControlName="date">
+            </div>
+            <div class="formGroup">
+                <label for="url">Url (facultatif)</label>
+                <input type="text" id="url" formControlName="url">
+            </div>
+            <button type="submit" (click)="onSubmit()" [disabled]="taskForm.invalid">Envoyer</button> 
+        </form>
+    </div>
+</div>
+
