@@ -5,12 +5,18 @@ $bk: #F1FAEE;
 
 .container {
     position: relative;
+    height: 93vh;
+    width: 100vw;
+    
+}
+
+.content {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 93vh;
-    width: 100vw;
     background-color: $bk;
 }
 
@@ -25,11 +31,12 @@ $bk: #F1FAEE;
 }
 
 .card-task {
+    margin-top: 10%;
     background-color: $tertiary;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 800px;
-    height: 400px;
+    width: 65%;
+    height: 50%;
     padding: 16px;
     color: $primary;
     transition: background-color 0.3s, transform 0.3s;
@@ -40,6 +47,7 @@ $bk: #F1FAEE;
         .card-task__header,
         .card-task__date,
         .card-task__description,
+        .card-task__url a,
         mat-checkbox {
             color: white;
         }
@@ -53,10 +61,12 @@ $bk: #F1FAEE;
 
     .card-task__title h2 {
         font-weight: bold;
+        font-size: 1.5rem;
     }
 
     .card-task__date {
         color: $primary;
+        font-size: 0.9rem;
     }
 
     .card-task__body {
@@ -75,7 +85,9 @@ $bk: #F1FAEE;
 
         & h3 {
             margin: 0 auto;
-            width: 100%;
+            width: 85%;
+            text-wrap: balance;
+            font-size: 1.2rem;
         }
     }
 
@@ -93,11 +105,6 @@ $bk: #F1FAEE;
         overflow: hidden;
         text-align: center;
         margin-top: 30px;
-
-        .card-task__url {
-            font-weight: normal;
-            margin-top: 30px;
-        }
 
         a {
             margin: 0 auto;
@@ -204,7 +211,8 @@ form {
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 400px;
+    // width: 400px;
+    width: clamp(350px, 5vw, 400px);
 
     .close {
         position: absolute;
@@ -273,3 +281,33 @@ form {
         opacity: 0.8;
     }
   }
+
+
+
+@media screen and (max-width:767px) {
+
+    .card-task {
+        margin-top: 20%;
+        background-color: $tertiary;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        height: 60%;
+        padding: 16px;
+        color: $primary;
+        transition: background-color 0.3s, transform 0.3s;
+        position: relative;
+
+        .card-task__title h2 {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .card-task__date {
+            color: $primary;
+            font-size: 0.75rem;
+        }
+
+    }
+    
+}
