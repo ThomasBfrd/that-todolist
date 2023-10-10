@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, tap } from 'rxjs';
 import { TaskModel } from '../models/task.model';
 import { TaskRefreshService } from './task-refresh.service';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class TaskService {
               private refreshService: TaskRefreshService) {}
 
   getAllTasks(): Observable<TaskModel[]> {
-    return this.http.get<TaskModel[]>(`${environment.apiUrl}/tasks`).pipe(
+    return this.http.get<TaskModel[]>('https://that-todolist-backend.vercel.app/tasks').pipe(
       catchError(error => {
         throw new Error(error.message);
       })
@@ -22,7 +21,7 @@ export class TaskService {
   }
 
   getTaskById(taskId: string): Observable<TaskModel> {
-    const url = `${environment.apiUrl}/tasks/${taskId}`;
+    const url = `https://that-todolist-backend.vercel.app/tasks/${taskId}`;
     return this.http.get<TaskModel>(url).pipe(
       catchError(error => {
         throw error;
@@ -31,7 +30,7 @@ export class TaskService {
   }
 
   updateTask(taskId: string, formValue: { title: string, description: string, date: Date, url?: string }): Observable<TaskModel> {
-    const url = `${environment.apiUrl}/tasks/${taskId}`;
+    const url = `https://that-todolist-backend.vercel.app/tasks/${taskId}`;
     return this.http.put<TaskModel>(url, formValue).pipe(
       tap(() => {
         console.log('Tâche modifiée :', formValue);
@@ -43,7 +42,7 @@ export class TaskService {
   }
 
   checkedTask(taskId: string, task: TaskModel): Observable<TaskModel> {
-    const url = `${environment.apiUrl}/tasks/${taskId}`;
+    const url = `https://that-todolist-backend.vercel.app/tasks/${taskId}`;
         console.log('Requesting url: ', url);
         return this.http.put<TaskModel>(url, task);
   }
@@ -54,7 +53,7 @@ export class TaskService {
       isDone: false
     };
 
-    return this.http.post<TaskModel>(`${environment.apiUrl}/tasks`, task).pipe(
+    return this.http.post<TaskModel>('https://that-todolist-backend.vercel.app/tasks', task).pipe(
       tap(() => {
         console.log('Tâche envoyée', task);
       }),
@@ -66,7 +65,7 @@ export class TaskService {
   }
 
   deleteTask(taskId: string): Observable<TaskModel> {
-    const url = `${environment.apiUrl}/tasks/${taskId}`;
+    const url = `https://that-todolist-backend.vercel.app/tasks/${taskId}`;
     return this.http.delete<TaskModel>(url).pipe(
       tap(() => {
         console.log('Tâche supprimée', url);
