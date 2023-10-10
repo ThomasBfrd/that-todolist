@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +70,7 @@ export class AuthService {
       password: signupForm.password,
     };
 
-    return this.http.post<User>('https://that-todolist-backend.vercel.app/auth/signup', user).pipe(
+    return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user).pipe(
       catchError(error => {
         throw error;
       })
@@ -82,7 +83,7 @@ export class AuthService {
       password: loginForm.password
     };
 
-    return this.http.post<User>('https://that-todolist-backend.vercel.app/auth/login', user).pipe(
+    return this.http.post<User>(`${environment.apiUrl}/auth/login`, user).pipe(
       tap((response: User) => {
         if (response && response.token) {
           this.setToken(response.token, response.username);
